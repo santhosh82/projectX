@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import UserForm, TJobForm
 from django.contrib.auth import authenticate,login
 from django.http import HttpResponse,HttpResponseRedirect
-
+from django.core.urlresolvers import reverse
 # Create your views here.
 
 def index(request):
@@ -53,16 +53,21 @@ def register(request):
 
 def user_login(request):
     if request.method == "POST":
+        print("user login post")
         # get the usernames and passwords
         username  = request.POST.get('username')
         password  = request.POST.get('password')
+        print("username is ",username)
+        print("pass is ",password)
 
         user  = authenticate(username=username,password=password)
 
         if user:
             if user.is_active:
+                print("just before the redirecting")
                 login(request,user)
-                return  HttpResponseRedirect('JobTracker/index/')
+                print("The user got login but not redirected")
+                return  HttpResponseRedirect(reverse('index'))
 
             else:
                 return HttpResponse("your account is not active")
