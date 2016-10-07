@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-TEMPLATE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATE_DIRS = (TEMPLATE_PATH,)
 
@@ -76,6 +76,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'projectx.wsgi.application'
 
 
+# password hashers
+PASSWORD_HASHERS = (
+'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
+
+
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -127,7 +135,7 @@ STATIC_URL = '/static/'
 
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIR = (STATIC_PATH,)
+STATICFILES_DIRS = (STATIC_PATH,)
 
 MEDIA_URL = '/media/'
 
