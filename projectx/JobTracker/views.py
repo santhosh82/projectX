@@ -4,20 +4,28 @@ from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_control
+from .models import TJob
+
+
+
 # Create your views here.
 
+@login_required
 def index(request):
     print("JobTracker: views.py in index()")
     return render(request, "JobTracker/index.html")
 
 
+@login_required
 def addJob(request):
     if request.method == 'POST':
+
         form = TJobForm(request.POST)
+        form.user = request.user
 
         if form.is_valid():
             form.save(commit=True)
-
             return index(request)
         else:
             print(form.errors)
@@ -56,19 +64,19 @@ def user_login(request):
     if request.method == "POST":
         print("user login post")
         # get the usernames and passwords
-        username  = request.POST.get('username')
-        password  = request.POST.get('password')
-        print("username is ",username)
-        print("pass is ",password)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print("username is ", username)
+        print("pass is ", password)
 
-        user  = authenticate(username=username,password=password)
+        user = authenticate(username=username, password=password)
 
         if user:
             if user.is_active:
                 print("just before the redirecting")
-                login(request,user)
+                login(request, user)
                 print("The user got login but not redirected")
-                return  HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('index'))
 
             else:
                 return HttpResponse("your account is not active")
@@ -79,16 +87,25 @@ def user_login(request):
     else:
         return render(request,'JobTracker/login.html',{})
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def welcome(request):
-    user_form = UserForm()
+    
 
+    user_form = UserForm()
     return render(request, 'JobTracker/welcome.html', {'user_form': user_form})
+
+
 @login_required
 def user_logout(request):
     logout(request)
-
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('welcome'))
 
 
+
+
+@login_required
+def jobs_list(request):
+    jobs = TJob.objects.filter(user_id=request.user)
+    return render(request, 'JobTracker/_jobs_list.html', {'jobs': jobs})
 
