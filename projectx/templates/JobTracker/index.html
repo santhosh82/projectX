@@ -39,18 +39,18 @@
             <ul class='nav navbar-nav navbar-right'>
 
                 <li><a href='/rango/'>Home</a></li>
-                <li><a href='/rango/register/'>Register Here</a></li>
-                <li><a href='#'>Login</a></li>
+            <!--    <li><a href='/rango/register/'>Register Here</a></li>  -->
                 <li><a href='/rango/about/'>About</a></li>
+                <li><a href="{% url 'logout'%}">Logout</a></li>
             </ul>
         </div>
     </div>
 </div>
 
-<div class='container-fluid' ng-controller = "appController as ctrl" >
+<div class='container-fluid' ng-controller="appController as ctrl">
     <div class='row'>
         <div class='col-sm-3 col-md-2 sidebar'>
-            <button class="btn btn-primary" id="add_job_btn" ng-click = "ctrl.addJob()"> Add a new Job </button>
+            <button class="btn btn-primary" id="add_job_btn" ng-click="ctrl.addJob()"> Add a new Job</button>
             <a href="/JobTracker/register/">Register Here</a>
             {% block side_block %}{% endblock %}
         </div>
@@ -61,6 +61,11 @@
                 </div>
             </div>
             <div>
+                {% if user.is_authenticated %}
+                <h1>Rango says... hello {{ user.username }}!</h1>
+                {% else %}
+                <h1>Rango says... hello world!</h1>
+                {% endif %}
                 {% block body_block %}{% endblock %}
             </div>
         </div>

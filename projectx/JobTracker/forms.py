@@ -37,8 +37,9 @@ class TJobForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-
+    username = forms.CharField(widget=forms.widgets.Input(attrs = {'class' : 'form-username form-control','placeholder':'username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs = {'class' : 'form-password form-control','placeholder':'password'}))
+    email = forms.CharField(widget=forms.widgets.Input(attrs = {'class' : 'form-email form-control','placeholder':'email'}))
     class Meta:
         model = User
         fields = ('username', 'email', 'password')

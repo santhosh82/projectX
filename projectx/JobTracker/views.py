@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .forms import UserForm, TJobForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -77,3 +78,17 @@ def user_login(request):
 
     else:
         return render(request,'JobTracker/login.html',{})
+
+def welcome(request):
+    user_form = UserForm()
+
+    return render(request, 'JobTracker/welcome.html', {'user_form': user_form})
+@login_required
+def user_logout(request):
+    logout(request)
+
+    # Take the user back to the homepage.
+    return HttpResponseRedirect(reverse('welcome'))
+
+
+

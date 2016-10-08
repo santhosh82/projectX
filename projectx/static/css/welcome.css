@@ -1,0 +1,52 @@
+      #login {
+            padding-top: 10%;
+            padding-left: 10%;
+        }
+
+        input {
+            margin-bottom: 20px;
+            display:none;
+
+        }
+
+        #user_form {
+            padding-top: 15%;
+        }
+
+        .bluediv1 {
+            background-color: lightblue;
+            padding-top: 89px;
+            padding-bottom: 50px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+
+        .bluediv2 {
+            background-color: lightblue;
+                margin-top: 131px;
+            padding-top: 40px;
+            padding-bottom: 50px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        .login-title{
+            background-color: #2aabd2;
+            height: 70px;
+            width: 376.5px;
+
+        }
+
+        .registration-title
+        {
+            background-color: #2aabd2;
+            margin-top: 140px;
+            margin-bottom: -130.75px;
+            height: 70px;
+            width: 465px;
+        }
+
+
+
+
+
