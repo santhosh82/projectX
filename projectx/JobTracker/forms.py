@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 from .models import TJob
 
 
-class TJobForm(forms.ModelForm):
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
+class TJobForm(forms.ModelForm):
     companyName = forms.CharField(label="Company Name: ", max_length=50,
                                   widget=forms.widgets.Input(attrs={'class': 'form-control'}))
-    appliedOn = forms.DateField(label="Applied On: ", widget=forms.widgets.Input(attrs={'class': 'form-control'}))
+    appliedOn = forms.DateField(label="Applied On: ", widget=DateInput(attrs={'class': 'form-control'}))
     source = forms.CharField(label="Source: ", max_length=50,
                              widget=forms.widgets.Input(attrs={'class': 'form-control'}))
     jobId = forms.CharField(label="Job ID: ", max_length=50,
@@ -35,6 +37,9 @@ class TJobForm(forms.ModelForm):
         model = TJob
         fields = ['companyName', 'appliedOn', 'source', 'jobId', 'jobDesc',
                   'statusLink', 'result', 'user']
+        widgets = {
+            'appliedOn': DateInput(),
+        }
 
 
 class UserForm(forms.ModelForm):

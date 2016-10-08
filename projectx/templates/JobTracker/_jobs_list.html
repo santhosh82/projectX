@@ -1,6 +1,6 @@
 <h1> Jobs you have applied</h1>
-<div>
-    <table class="table table-striped">
+<div style="padding-top: 30px;">
+    <table class="table table-striped" id="jobs_list">
         <thead>
             <tr>
                 <th> Company Name </th>
@@ -42,3 +42,8 @@
         {% endfor %}
     </table>
 </div>
+
+<script>
+    $('#jobs_list').DataTable({
+    });
+</script>
