@@ -1,8 +1,13 @@
-from django.shortcuts import render
-from .forms import UserForm, TJobForm
-from django.contrib.auth import authenticate,login
-from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+from .forms import UserForm, TJobForm
+from .models import TJob
+
+
 # Create your views here.
 
 def index(request):
@@ -55,19 +60,19 @@ def user_login(request):
     if request.method == "POST":
         print("user login post")
         # get the usernames and passwords
-        username  = request.POST.get('username')
-        password  = request.POST.get('password')
-        print("username is ",username)
-        print("pass is ",password)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print("username is ", username)
+        print("pass is ", password)
 
-        user  = authenticate(username=username,password=password)
+        user = authenticate(username=username, password=password)
 
         if user:
             if user.is_active:
                 print("just before the redirecting")
-                login(request,user)
+                login(request, user)
                 print("The user got login but not redirected")
-                return  HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('index'))
 
             else:
                 return HttpResponse("your account is not active")
@@ -76,4 +81,10 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied")
 
     else:
-        return render(request,'JobTracker/login.html',{})
+        return render(request, 'JobTracker/login.html', {})
+
+
+@login_required
+def jobs_list(request):
+    jobs = TJob.objects.all(username=request.user)
+    return render(request, 'JobTracker/_jobs_list.html', {'jobs': jobs})

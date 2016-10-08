@@ -20,6 +20,7 @@ class TJob(models.Model):
     )
 
     result = models.CharField(max_length=1, choices=myChoice, default=UNKNOWN)
+    username = models.ForeignKey(User.username)
 
     def __str__(self):
         return self.companyName + " \nresult: " + str(self.result) + " \nappliedOn: " + str(
