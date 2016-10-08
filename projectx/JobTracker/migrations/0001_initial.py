@@ -17,6 +17,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='UserProfile',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
             name='TJob',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -27,13 +34,7 @@ class Migration(migrations.Migration):
                 ('jobDesc', models.CharField(blank=True, max_length=200)),
                 ('statusLink', models.URLField(blank=True)),
                 ('result', models.CharField(choices=[('A', 'accept'), ('R', 'reject'), ('U', 'unknown')], default='U', max_length=1)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='UserProfile',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

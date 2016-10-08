@@ -1,1 +1,44 @@
-{% for job in jobs %}
+<h1> Jobs you have applied</h1>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th> Company Name </th>
+                <th> Applied Date </th>
+                <th> Source</th>
+                <th> Job ID </th>
+                <th> Job Description </th>
+                <th> Status Link </th>
+                <th> Job Status </th>
+            </tr>
+        </thead>
+        {% for job in jobs %}
+        <tr>
+            <td>
+                {{ job.companyName }}
+            </td>
+            <td>
+                {{ job.appliedOn }}
+            </td>
+            <td>
+                {{ job.source }}
+            </td>
+            <td>
+                {{ job.jobId }}
+            </td>
+            <td>
+                {{ job.jobDesc }}
+            </td>
+            </td>
+            <td>
+                {{ job.statusLink }}
+            </td>
+            </td>
+            <td>
+                {{ job.result }}
+            </td>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>

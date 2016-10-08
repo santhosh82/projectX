@@ -15,13 +15,15 @@ def index(request):
     return render(request, "JobTracker/index.html")
 
 
+@login_required
 def addJob(request):
     if request.method == 'POST':
+
         form = TJobForm(request.POST)
+        form.user = request.user
 
         if form.is_valid():
             form.save(commit=True)
-
             return index(request)
         else:
             print(form.errors)
@@ -86,5 +88,5 @@ def user_login(request):
 
 @login_required
 def jobs_list(request):
-    jobs = TJob.objects.all(username=request.user)
+    jobs = TJob.objects.filter(user_id=request.user)
     return render(request, 'JobTracker/_jobs_list.html', {'jobs': jobs})
