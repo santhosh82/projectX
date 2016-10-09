@@ -13,6 +13,17 @@ myApp.controller('appController', ['$scope', '$http', '$sce', function ($scope, 
             ctrl.html_data = $sce.trustAsHtml(response.data);
         });
     }
+
+    ctrl.getJobsSharedList =  function()
+    {
+        $http.get(window.get_jobs_shared_list_url).then(function (response) {
+            
+        });
+    }
+
+
+
+
 }]);
 
 myApp.config(function ($interpolateProvider) {

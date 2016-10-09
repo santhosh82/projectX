@@ -63,6 +63,13 @@
                             ng-click="ctrl.getJobsList()"> Applied Jobs
                     </button>
                 </li>
+                <li style="padding-bottom: 20px">
+                    <button style="width: 130px" class="btn btn-primary" id="get_jobs_list_btn"
+                            ng-click="ctrl.getJobsSharedList()"> my Job Shares
+                    </button>
+                </li>
+
+
             </ul>
             {% block side_block %}{% endblock %}
 
@@ -87,6 +94,7 @@
 <script type="text/javascript">
     var add_form_url = '{% url "addjob" %}';
     var get_jobs_list_url = '{% url "getjobslist" %}';
+    
 </script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src='http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js'></script>

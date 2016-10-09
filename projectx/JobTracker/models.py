@@ -39,3 +39,13 @@ class TJob(models.Model):
     def __str__(self):
         return self.companyName + " \nresult: " + str(self.result) + " \nappliedOn: " + str(
             self.appliedOn) + " \njobDesc: " + self.jobDesc
+
+
+
+
+class JobShareTable(models.Model):
+    fromUserId = models.IntegerField()
+    toUserId = models.IntegerField()
+    jobId = models.IntegerField()
+
+

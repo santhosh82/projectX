@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
-from .models import TJob,User
+from .models import TJob,User,JobShareTable
 from django.views.generic import View
 
 
@@ -134,3 +134,7 @@ def jobs_list(request):
     jobs = TJob.objects.filter(user_id=request.user)
     return render(request, 'JobTracker/_jobs_list.html', {'jobs': jobs})
 
+#views which displays the list of jobs you have
+    # def jobs_shared_list(request):
+    #     jobs = JobShareTable.objects.all().filter(jobId = request.user.id)
+    #     return render(request, 'JobTracker/_jobs_shared_list.html', {'jobs': jobs})
