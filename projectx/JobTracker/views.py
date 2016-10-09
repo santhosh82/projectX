@@ -1,13 +1,15 @@
-from django.shortcuts import render
-from .forms import UserForm, TJobForm
-from django.contrib.auth import authenticate,login,logout
-from django.http import HttpResponse,HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.views.decorators.cache import cache_control
 from .models import TJob,User,JobShareTable
 from django.views.generic import View
 
+
+from .forms import UserForm, TJobForm
+from .models import TJob
 
 
 # Create your views here.
@@ -18,20 +20,9 @@ def index(request):
     return render(request, "JobTracker/index.html")
 
 
-
 @login_required
 def addJob(request):
-    print("in the add job")
-    try:
-        profile = request.user
-
-    except User.DoesNotExist:
-
-        profile = User(user=request.user)
-
-
     if request.method == 'POST':
-        print("In the form condition")
 
         # creating partial author form
         form = TJobForm(request.POST)
@@ -48,16 +39,16 @@ def addJob(request):
             temp.save()
             return index(request)
         else:
-            print(form.username)
+            print(form.errors)
     else:
         form = TJobForm()
-        #form.user = request.user
 
     return render(request, 'JobTracker/_create_job.html', {'form': form})
 
-
-
-
+@login_required
+def deleteJob(request, id):
+    TJob.objects.filter(id=id).delete()
+    return render(request, 'JobTracker/_jobs_list.html',)
 
 def register(request):
     registered = False
@@ -109,13 +100,13 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied")
 
     else:
-        return render(request,'JobTracker/login.html',{})
+        return render(request, 'JobTracker/login.html', {})
+
+def about(request):
+    return render(request, 'JobTracker/_about.html')
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def welcome(request):
-    if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('index'))
-
     user_form = UserForm()
     return render(request, 'JobTracker/welcome.html', {'user_form': user_form})
 
@@ -127,14 +118,13 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('welcome'))
 
 
-
-
 @login_required
 def jobs_list(request):
     jobs = TJob.objects.filter(user_id=request.user)
     return render(request, 'JobTracker/_jobs_list.html', {'jobs': jobs})
 
+
 #views which displays the list of jobs you have
-    # def jobs_shared_list(request):
-    #     jobs = JobShareTable.objects.all().filter(jobId = request.user.id)
-    #     return render(request, 'JobTracker/_jobs_shared_list.html', {'jobs': jobs})
+# def jobs_shared_list(request):
+#     jobs = JobShareTable.objects.all().filter(jobId = request.user.id)
+#     return render(request, 'JobTracker/_jobs_shared_list.html', {'jobs': jobs})

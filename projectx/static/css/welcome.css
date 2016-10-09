@@ -1,53 +1,91 @@
-      #login {
-            padding-top: 10%;
-            padding-left: 10%;
-        }
+body {
+    background-image: url("/static/images/background.jpg");
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: 100%;
+    background-size: cover;
+}
 
+#my-container {
 
-        input {
-            margin-bottom: 20px;
-            display:none;
+}
 
-        }
+#login {
+    float: right;
+    padding-top: 10%;
+    padding-left: 10%;
+    margin-top: -3px;
+    margin-left: 0px;
+    width: 49%;
+    height: 80%;
+}
 
-        #user_form {
-            padding-top: 15%;
-        }
+#signup {
+    padding-left: 10%;
+}
 
-        .bluediv1 {
-            background-color: lightblue;
-            padding-top: 89px;
-            padding-bottom: 50px;
-            padding-left: 40px;
-            padding-right: 40px;
-        }
+input {
+    margin-bottom: 20px;
+    display: none;
 
+}
 
-        .bluediv2 {
-            background-color: lightblue;
-                margin-top: 131px;
-            padding-top: 40px;
-            padding-bottom: 50px;
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-        .login-title{
-            background-color: #2aabd2;
-            height: 70px;
-            width: 376.5px;
+#user_form {
+    padding-top: 15%;
+}
 
-        }
+.bluediv1 {
+    background-color: lightblue;
+    padding-top: 89px;
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 376px;
+}
 
-        .registration-title
-        {
-            background-color: #2aabd2;
-            margin-top: 140px;
-            margin-bottom: -130.75px;
-            height: 70px;
-            width: 465px;
-        }
+.bluediv2 {
+    background-color: lightblue;
+    margin-top: 131px;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 464px;
+}
 
+.login-title {
+    background-color: #2aabd2;
+    height: 70px;
+    width: 376.5px;
 
+}
 
+.registration-title {
+    background-color: #2aabd2;
+    margin-top: 140px;
+    margin-bottom: -130.75px;
+    height: 70px;
+    width: 465px;
+}
 
+.sign-in-h3 {
+    padding-top: 22px;
+}
+
+.sign-up-h3 {
+    padding-top: 10px;
+}
+
+.my-row {
+    width: 85%;
+    margin-right: 113% !important;
+    margin-left: 7% !important;
+    margin-top: 6% !important;
+    height: 85%;
+    padding: 0px;
+}
 
