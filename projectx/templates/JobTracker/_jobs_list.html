@@ -2,18 +2,20 @@
 <div style="padding-top: 30px;">
     <table class="table table-striped" id="jobs_list">
         <thead>
-            <tr>
-                <th> Company Name </th>
-                <th> Applied Date </th>
-                <th> Source</th>
-                <th> Job ID </th>
-                <th> Job Description </th>
-                <th> Status Link </th>
-                <th> Job Status </th>
-            </tr>
+        <tr>
+            <th> Company Name</th>
+            <th> Applied Date</th>
+            <th> Source</th>
+            <th> Job ID</th>
+            <th> Job Description</th>
+            <th> Status Link</th>
+            <th> Job Status</th>
+            <th></th>
+            <th></th>
+        </tr>
         </thead>
         {% for job in jobs %}
-        <tr>
+        <tr data={{ job.id }}>
             <td>
                 {{ job.companyName }}
             </td>
@@ -37,6 +39,11 @@
             <td>
                 {{ job.result }}
             </td>
+            <td>
+                <a class="btn btn-default">Edit</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="deletejob/{{ job.id }}">Delete</a>
             </td>
         </tr>
         {% endfor %}
@@ -44,6 +51,5 @@
 </div>
 
 <script>
-    $('#jobs_list').DataTable({
-    });
+    $('#jobs_list').DataTable({});
 </script>

@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    $('#get_jobs_list_btn').click();
+});
+
 var myApp = angular.module('myApp', []);
 
 myApp.controller('appController', ['$scope', '$http', '$sce', function ($scope, $http, $sce) {
@@ -7,12 +11,17 @@ myApp.controller('appController', ['$scope', '$http', '$sce', function ($scope, 
         $http.get(window.add_form_url).then(function (response) {
             ctrl.html_data = $sce.trustAsHtml(response.data);
         });
-    }
+    };
     ctrl.getJobsList = function () {
         $http.get(window.get_jobs_list_url).then(function (response) {
             ctrl.html_data = $sce.trustAsHtml(response.data);
         });
-    }
+    };
+    ctrl.about = function () {
+        $http.get(window.about_url).then(function (response) {
+            ctrl.html_data = $sce.trustAsHtml(response.data);
+        });
+    };
 }]);
 
 myApp.config(function ($interpolateProvider) {

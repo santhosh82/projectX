@@ -7,6 +7,7 @@ from .models import TJob
 class DateInput(forms.DateInput):
     input_type = 'date'
 
+
 class TJobForm(forms.ModelForm):
     companyName = forms.CharField(label="Company Name: ", max_length=50,
                                   widget=forms.widgets.Input(attrs={'class': 'form-control'}))
@@ -19,18 +20,13 @@ class TJobForm(forms.ModelForm):
                               widget=forms.widgets.Input(attrs={'class': 'form-control'}))
     statusLink = forms.URLField(label="Status link: ", max_length=200,
                                 widget=forms.widgets.Input(attrs={'class': 'form-control'}))
-    ACCEPT = "A"
-    REJECT = "R"
-    UNKNOWN = "U"
+
     myChoice = (
-        (ACCEPT, 'accept'),
-        (REJECT, "reject"),
-        (UNKNOWN, "unknown")
-
+        ('A', 'Accept'),
+        ('R', "Reject"),
+        ('U', "Unknown")
     )
-
-    result = forms.CharField(label="Result: ", max_length=1,
-                             widget=forms.widgets.Input(attrs={'class': 'form-control'}))
+    result = forms.ChoiceField(label="Result: ", choices=myChoice, widget=forms.Select(attrs={'class': 'form-control'}))
     user = None
 
     class Meta:
@@ -43,7 +39,12 @@ class TJobForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(widget=forms.widgets.Input(
+        attrs={'class': 'form-username form-control', 'placeholder': 'Username', 'autocomplete': 'off'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-password form-control', 'placeholder': 'Password', 'autocomplete': 'off'}))
+    email = forms.CharField(widget=forms.widgets.Input(
+        attrs={'class': 'form-email form-control', 'placeholder': 'Email', 'autocomplete': 'off'}))
 
     class Meta:
         model = User

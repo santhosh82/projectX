@@ -1,8 +1,9 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_control
 
 from .forms import UserForm, TJobForm
 from .models import TJob
@@ -10,6 +11,7 @@ from .models import TJob
 
 # Create your views here.
 
+@login_required
 def index(request):
     print("JobTracker: views.py in index()")
     return render(request, "JobTracker/index.html")
@@ -32,6 +34,10 @@ def addJob(request):
 
     return render(request, 'JobTracker/_create_job.html', {'form': form})
 
+@login_required
+def deleteJob(request, id):
+    TJob.objects.filter(id=id).delete()
+    return render(request, 'JobTracker/_jobs_list.html',)
 
 def register(request):
     registered = False
@@ -84,6 +90,21 @@ def user_login(request):
 
     else:
         return render(request, 'JobTracker/login.html', {})
+
+def about(request):
+    return render(request, 'JobTracker/_about.html')
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def welcome(request):
+    user_form = UserForm()
+    return render(request, 'JobTracker/welcome.html', {'user_form': user_form})
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    # Take the user back to the homepage.
+    return HttpResponseRedirect(reverse('welcome'))
 
 
 @login_required
