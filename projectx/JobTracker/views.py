@@ -5,7 +5,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
-from .models import TJob
+from .models import TJob,User
+from django.views.generic import View
 
 
 
@@ -17,22 +18,45 @@ def index(request):
     return render(request, "JobTracker/index.html")
 
 
+
 @login_required
 def addJob(request):
-    if request.method == 'POST':
+    print("in the add job")
+    try:
+        profile = request.user
 
+    except User.DoesNotExist:
+
+        profile = User(user=request.user)
+
+
+    if request.method == 'POST':
+        print("In the form condition")
+
+        # creating partial author form
         form = TJobForm(request.POST)
-        form.user = request.user
 
         if form.is_valid():
-            form.save(commit=True)
+            print("form is valid")
+
+            # Now commit to False
+            temp = form.save(commit=False)
+
+            # add user value to the object
+            # if not working, set using queires
+            temp.user = request.user
+            temp.save()
             return index(request)
         else:
-            print(form.errors)
+            print(form.username)
     else:
         form = TJobForm()
+        #form.user = request.user
 
     return render(request, 'JobTracker/_create_job.html', {'form': form})
+
+
+
 
 
 def register(request):
@@ -89,7 +113,8 @@ def user_login(request):
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def welcome(request):
-    
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('index'))
 
     user_form = UserForm()
     return render(request, 'JobTracker/welcome.html', {'user_form': user_form})

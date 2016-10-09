@@ -34,7 +34,8 @@ class TJobForm(forms.ModelForm):
     class Meta:
         model = TJob
         fields = ['companyName', 'appliedOn', 'source', 'jobId', 'jobDesc',
-                  'statusLink', 'result', 'user']
+                  'statusLink', 'result']
+        exclude = ['user']
 
 
 class UserForm(forms.ModelForm):
