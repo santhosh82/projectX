@@ -1,5 +1,5 @@
 <h1> Edit Job data </h1>
-<form id="category_form" method="post" action="/JobTracker/editjob/{{ myId }}" style="padding-top: 30px">
+<form id="category_form" method="post" action="/jobtracker/editjob/{{ myId }}" style="padding-top: 30px">
 
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}

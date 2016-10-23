@@ -9,11 +9,11 @@
 
 {% if registered %}
 Rango says: <strong>thank you for registering!</strong>
-<a href="/JobTracker/index">Return to the homepage.</a><br/>
+<a href="/jobtracker/index">Return to the homepage.</a><br/>
 {% else %}
 Rango says: <strong>register here!</strong><br/>
 
-<form id="user_form" method="post" action="/JobTracker/register/"
+<form id="user_form" method="post" action="/jobtracker/register/"
       enctype="multipart/form-data">
 
     {% csrf_token %}

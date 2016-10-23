@@ -14,7 +14,7 @@ friendsApp.controller('myController',['$scope', '$http', '$window',function ($sc
 
     ctrl.getUsers = function(val)
     {
-        return $http.get('/JobTracker/api/getusers/'+val+"/").then(function(response)
+        return $http.get('/jobtracker/api/getusers/'+val+"/").then(function(response)
         {
            return response.data.map(function (item) {
               return item.name;
@@ -25,7 +25,7 @@ friendsApp.controller('myController',['$scope', '$http', '$window',function ($sc
 
     ctrl.addFriend = function() {
         // Need to call a view to make friends in the database
-        $http.get('/JobTracker/makefriends/',{params:{"name":ctrl.selected, "type":"pending"}}).then(function (response) {
+        $http.get('/jobtracker/makefriends/',{params:{"name":ctrl.selected, "type":"pending"}}).then(function (response) {
 
             console.log(response.data)
         });
@@ -38,9 +38,9 @@ friendsApp.controller('myController',['$scope', '$http', '$window',function ($sc
         // Need to call a view to make a row in sharedtable
 
 
-        $http.get('/JobTracker/addjobshare/',{params:{"name" : friend, "id" : id }}).then(function (response) {
+        $http.get('/jobtracker/addjobshare/',{params:{"name" : friend, "id" : id }}).then(function (response) {
             console.log("in the share job friend with id ",friend + " "+id);
-            $window.location.href = "/JobTracker/index";
+            $window.location.href = "/jobtracker/index";
 
         });
         

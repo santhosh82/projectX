@@ -21,12 +21,12 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
 
 
     ctrl.addJob = function () {
-        $http.get('/JobTracker/addjob/').then(function (response) {
+        $http.get('/jobtracker/addjob/').then(function (response) {
             ctrl.html_data = $sce.trustAsHtml(response.data);
         });
     };
     ctrl.getJobsList = function () {
-        $http.get('/JobTracker/getjobslist/').then(function (response) {
+        $http.get('/jobtracker/getjobslist/').then(function (response) {
           //  temp_data = $sce.trustAsHtml(response.data);
             //ctrl.html_data = $compile(temp_data)($scope);
             ctrl.html_data = response.data;
@@ -35,21 +35,24 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
 
     ctrl.getJobsSharedList =  function()
     {
-        $http.get("/JobTracker/getsharedlist/").then(function (response) {
+        $http.get("/jobtracker/getsharedlist/").then(function (response) {
             ctrl.html_data = response.data;
         });
     }
 
     ctrl.about = function () {
-        $http.get('/JobTracker/about/').then(function (response) {
+        $http.get('/jobtracker/about/').then(function (response) {
             ctrl.html_data = $sce.trustAsHtml(response.data);
+            // $window.location.href = "/jobtracker/index/";
+            // ctrl.html_data = $sce.trustAsHtml(response.data);
         });
+        // $window.location.href = "/jobtracker/about/";
     };
 
 
     ctrl.edit = function (jobId) {
       console.log("job id is ",jobId);
-        $http.get('/JobTracker/editjob/'+jobId).then(function (response) {
+        $http.get('/jobtracker/editjob/'+jobId).then(function (response) {
             console.log("data in edit function is "+response.data);
            ctrl.html_data = response.data;
         });
@@ -58,7 +61,7 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
     ctrl.delete = function(jobId)
     {
         console.log("job id is ",jobId);
-        $http.get('/JobTracker/deletejob/').then(function (response) {
+        $http.get('/jobtracker/deletejob/').then(function (response) {
             ctrl.html_data = response.data
 
         })
@@ -67,9 +70,9 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
     ctrl.share = function(jobId)
     {
         console.log("share job id is ",jobId);
-        //$location.path("/JobTracker/sharejob/"+jobId);
+        //$location.path("/jobtracker/sharejob/"+jobId);
 
-        $window.location.href = "/JobTracker/sharejob/"+jobId;
+        $window.location.href = "/jobtracker/sharejob/"+jobId;
 
     }
 

@@ -27,7 +27,7 @@
                 <h3 class="sign-in-h3">Sign in</h3>
             </div>
             <div class="col-sm-6 bluediv1">
-                <form id="login_form" method="post" action="/JobTracker/login/" autocomplete="off">
+                <form id="login_form" method="post" action="/jobtracker/login/" autocomplete="off">
                     {% csrf_token %}
                     <input type="text" name="username" value="" size="50" class="form-username form-control"
                            placeholder="Username" autocomplete="off"/>
@@ -44,7 +44,7 @@
                 <p>sign up below to get instant access</p>
             </div>
             <div class="col-sm-6 bluediv2">
-                <form id="user_form" method="post" action="/JobTracker/register/"
+                <form id="user_form" method="post" action="/jobtracker/register/"
                       enctype="multipart/form-data" autocomplete="off">
                     {% csrf_token %}
                     {{ user_form.username }}
