@@ -1,0 +1,16 @@
+
+{%  extends "JobTracker/add_friends.html" %}
+
+
+{% block title %}
+    <h2>share job with a friend</h2>
+
+{% endblock %}
+
+
+
+                {% block submit_button %}
+        <span class = "input-group-btn">
+                    <button class="btn btn-primary" ng-click = "ctrl.shareJobFriend(ctrl.selected ,{{ id }})"  >Share Job</button>
+        </span>
+                {% endblock %}

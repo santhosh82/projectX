@@ -44,8 +44,29 @@ class TJob(models.Model):
 
 
 class JobShareTable(models.Model):
-    fromUserId = models.IntegerField()
-    toUserId = models.IntegerField()
-    jobId = models.IntegerField()
+    fromUserId = models.ForeignKey(User , related_name="%(app_label)s_%(class)s_related")
+    toUserId = models.ForeignKey(User)
+    jobId = models.ForeignKey(TJob)
 
 
+    def __str__(self):
+        return "from user id : " + self.fromUserId.username + " to user id : " + self.toUserId.username + " job id : " + str(self.jobId);
+
+
+# The friends table is not implemeneted efficiently as there is normalization
+# as some rows have same values
+# Also one of my constraint is user_first_id is less than user_second_id
+class FriendsTable(models.Model):
+    user_first_id =  models.ForeignKey(User , related_name="%(app_label)s_%(class)s_related")
+    user_second_id = models.ForeignKey(User)
+    myChoice = (
+        (0, 'friend'),
+        (1, "pending1"),
+        (2, "pending2")
+
+    )
+
+    reltype = models.CharField(max_length = 10)
+
+    def __str__(self):
+        return "user1 : " + self.user_first_id.username + " user2 : " + self.user_second_id.username + " type : " + self.reltype;

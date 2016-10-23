@@ -1,0 +1,47 @@
+
+<!--Let this template have base template as index.html  -->
+
+
+<!-- a type ahead search for getting user  -->
+
+<!DOCTYPE html>
+
+{% extends "JobTracker/index.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+    <script src="{% static 'js/ui-bootstrap-tpls-2.2.0.js' %}"></script>
+    <script src="{% static 'js/angular-animate.js' %}"></script>
+    <script src="{% static 'js/angular-touch.js' %}"></script>
+
+
+    <script src = "{% static 'js/friends_app.js' %}"></script>
+
+
+<div>
+    <div class="container-fluid" ng-controller="myController as ctrl">
+        <div class="row">
+
+            <div class="col-md-offset-2 col-md-4 input-group">
+    <input type=text"  ng-model = "ctrl.selected"  placeholder="users  loaded via $http" uib-typeahead="state for state in ctrl.getUsers($viewValue)"  typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+       <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+    <div ng-show="noResults">
+      <i class="glyphicon glyphicon-remove"></i> No Results Found
+   </div>
+        <span class = "input-group-btn">
+                    <button class="btn btn-primary" tooltip-placement="'top'" uib-tooltip="On the top" >Add friend</button>
+
+
+        </span>
+
+
+
+
+</div>
+    </div>
+</div>
+
+</div>
+
+
+ {% endblock %}

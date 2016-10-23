@@ -1,6 +1,6 @@
 
 
-<h1> Jobs you have applied</h1>
+<h1> Jobs you are shared with</h1>
 {#<div style="padding-top: 30px;" ng-app = "myApp" ng-controller="appController as ctrl">#}
 <div style="padding-top: 30px;">
     <table class="table table-striped" id="jobs_list">
@@ -42,18 +42,7 @@
             <td>
                 {{ job.result }}
             </td>
-            <td>
-                <a class="btn btn-default"  ng-click = "ctrl.edit({{ job.id }})">Edit</a>
-{#    cannot implement partial view with the below link#}
-{#                <a class="btn btn-default"    href='{% url "editjob" job.id  %}' >Edit</a>#}
-            </td>
-            <td>
-                <a class="btn btn-danger"  ng-click = "ctrl.delete({{ job.id }})">Delete</a>
-            </td>
-                <td>
-                <a class="btn btn-primary"  ng-click = "ctrl.share({{ job.id }})">Share</a>
 
-            </td>
 
         </tr>
         {% endfor %}

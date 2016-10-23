@@ -14,7 +14,10 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/angular.min.js'%}"></script>
     <script src="{% static 'js/JobTracker.js'%}"></script>
+
+
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}"/>
@@ -71,6 +74,13 @@
                 </li>
 
 
+                                <li style="padding-bottom: 20px">
+                    <a style="width: 130px" class="btn btn-primary" href="{% url 'addfriends' %}" > add a friend
+                    </a>
+                </li>
+
+
+
             </ul>
             {% block side_block %}{% endblock %}
 
@@ -79,7 +89,7 @@
         <div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
             <div ng-show="true">
 
-                <div ng-bind-html="ctrl.html_data">
+                <div bind-html-compile="ctrl.html_data">
 
                 </div>
 
@@ -87,6 +97,11 @@
             <div>
 
                 {% block body_block %}{% endblock %}
+            <div class="inputgroup">
+
+
+
+    </div>
             </div>
         </div>
     </div>
@@ -96,6 +111,8 @@
     var add_form_url = '{% url "addjob" %}';
     var get_jobs_list_url = '{% url "getjobslist" %}';
     var about_url = '{% url "about" %}';
+    var edit_job_url = '{% url "tempeditjob"  %}';
+    var delete_job_url = '{% url "tempdeletejob" %}';
 
 </script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
