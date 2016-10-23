@@ -11,18 +11,22 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
     var ctrl = this;
     ctrl.show_add_form = false;
 
-   
+   var add_form_url = '/JobTracker/addjob/';
+    var get_jobs_list_url = '/JobTracker/getjobslist/';
+    var about_url = '/JobTracker/about/';
+    var edit_job_url = '/JobTracker/editjob/';
+    var delete_job_url = '/JobTracker/deletejob/';
 
 
 
 
     ctrl.addJob = function () {
-        $http.get(window.add_form_url).then(function (response) {
+        $http.get('/JobTracker/addjob/').then(function (response) {
             ctrl.html_data = $sce.trustAsHtml(response.data);
         });
     };
     ctrl.getJobsList = function () {
-        $http.get(window.get_jobs_list_url).then(function (response) {
+        $http.get('/JobTracker/getjobslist/').then(function (response) {
           //  temp_data = $sce.trustAsHtml(response.data);
             //ctrl.html_data = $compile(temp_data)($scope);
             ctrl.html_data = response.data;
@@ -45,7 +49,7 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
 
     ctrl.edit = function (jobId) {
       console.log("job id is ",jobId);
-        $http.get(window.edit_job_url+jobId).then(function (response) {
+        $http.get('/JobTracker/editjob/'+jobId).then(function (response) {
             console.log("data in edit function is "+response.data);
            ctrl.html_data = response.data;
         });
@@ -54,7 +58,7 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
     ctrl.delete = function(jobId)
     {
         console.log("job id is ",jobId);
-        $http.get(window.delete_job_url+jobId).then(function (response) {
+        $http.get('/JobTracker/deletejob/').then(function (response) {
             ctrl.html_data = response.data
 
         })
