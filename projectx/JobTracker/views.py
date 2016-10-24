@@ -19,8 +19,8 @@ from .models import TJob
 @login_required
 def index(request):
     print("JobTracker: views.py in index()")
-    #return render(request, "JobTracker/index.html")
-    return HttpResponseRedirect(reverse('welcome'))
+    return render(request, "JobTracker/index.html")
+    #return HttpResponseRedirect(reverse('welcome'))
 
 
 @login_required
