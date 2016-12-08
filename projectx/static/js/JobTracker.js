@@ -51,7 +51,7 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
 
 
     ctrl.edit = function (jobId) {
-      console.log("job id is ",jobId);
+      console.log("editing job id is ",jobId);
         $http.get('/jobtracker/editjob/'+jobId).then(function (response) {
             console.log("data in edit function is "+response.data);
            ctrl.html_data = response.data;
@@ -60,7 +60,8 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
 
     ctrl.delete = function(jobId)
     {
-        console.log("job id is ",jobId);
+        console.log("delete job id is ",jobId);
+
         $http.get('/jobtracker/deletejob/'+jobId).then(function (response) {
             ctrl.html_data = response.data
 
