@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'JobTracker',
-    'rest_framework'
+    'django_extensions'
 ]
 
 MIDDLEWARE_CLASSES = [
