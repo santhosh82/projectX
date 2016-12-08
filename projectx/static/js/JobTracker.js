@@ -61,7 +61,7 @@ myApp.controller('appController', ['$scope', '$http', '$sce', '$compile', '$loca
     ctrl.delete = function(jobId)
     {
         console.log("job id is ",jobId);
-        $http.get('/jobtracker/deletejob/').then(function (response) {
+        $http.get('/jobtracker/deletejob/'+jobId).then(function (response) {
             ctrl.html_data = response.data
 
         })
