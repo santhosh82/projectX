@@ -9,16 +9,16 @@ This application  **Job Tracker** helps to solve this problem.
 
 The app/website is live [here](https://sanbog.pythonanywhere.com/jobtracker/welcome) 
 
-** Software Needed**
+## Software Needed
 - Python Version 3.5
 
 
-** Installation **
+## Installation 
 -Initially you need to clone/download the repository.
 
 -It would be better for you to manage if you use virtualenv.
 
--- Run the following commands from terminal/command line
+- Run the following commands from terminal/command line
        pip install Django==1.9
        
        pip install django-extensions
@@ -31,14 +31,14 @@ The app/website is live [here](https://sanbog.pythonanywhere.com/jobtracker/welc
 -Once you execute the command, navigate to the [url](http://localhost:8000/jobtracker/welcome/) to see a welcome page which shows a sign up and sign in page.
 
 
-** Usage **
-Once you are able to get the welcome page, sign up for the application.
+## Usage 
+-Once you are able to get the welcome page, sign up for the application.
 
-Use the same credentials to login and add the job details.
+-Use the same credentials to login and add the job details.
 
-I think the UI helps you to understand the flow.
+-I think the UI helps you to understand the flow.
 
-Please feel free to contact for any info / help to install the app.
+**-Please feel free to contact for any info / help to install the app. **
 
 
 
