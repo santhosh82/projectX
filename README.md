@@ -38,7 +38,7 @@ The app/website is live [here](https://sanbog.pythonanywhere.com/jobtracker/welc
 
 - I think the UI helps you to understand the flow.
 
-** Please feel free to contact for any info / help to install the app. **
+** Please feel free to contact me for any info / help to install the app. **
 
 
 
